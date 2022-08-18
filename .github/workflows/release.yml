@@ -11,10 +11,22 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      # ...
-      - name: "Build & test"
-        run: |
-          echo "done!"
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - uses: actions/checkout@v3
+
+      - name: Linters
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.48
+
+      - name: Test
+        run: go test .
+
+      - name: Test
+        run: go build . -o token-fetcher
 
       - uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
@@ -22,3 +34,5 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: true
           title: "Development Build"
+          files: |
+            token-fetcher
