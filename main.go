@@ -82,7 +82,7 @@ func main() {
 		return val
 	}
 
-	installationID := getEnv("INSTALLATION_ID")
+	installationID := getEnv("INSTALLATISON_ID")
 	appID := getEnv("APP_ID")
 	privateKey := getEnv("PRIVATE_KEY")
 
