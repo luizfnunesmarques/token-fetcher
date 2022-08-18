@@ -1,6 +1,6 @@
 name: lint-and-test
 
-on: [push, pull_request]
+on: [push]
 
 env:
   GO_VERSION: 1.18.3
