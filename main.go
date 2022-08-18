@@ -27,7 +27,7 @@ func fetchInstallationToken(installationID, appID string, privateKey []byte) (st
 		Issuer:    appID,
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
+	token := jwt.NewWithCl aims(jwt.SigningMethodRS256, claims)
 	signKey, err := jwt.ParseRSAPrivateKeyFromPEM(privateKey)
 
 	if err != nil {
