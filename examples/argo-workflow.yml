@@ -5,7 +5,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   name: github-access-token
-  namespace: argo
+  namespace: argoaa
 spec:
   entrypoint: do-something-with-token
   templates:
