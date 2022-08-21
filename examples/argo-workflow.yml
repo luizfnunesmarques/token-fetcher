@@ -1,0 +1,52 @@
+# Using the image to output the token for another workflow.
+# This example expects a k8 secret containing the application id, the installation id and the private key.
+
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: github-access-token
+  namespace: argo
+spec:
+  entrypoint: do-something-with-token
+  templates:
+  - name: do-something-with-token
+    steps:
+    - - name: generate-token
+        template: generate-installation-token
+    - - name: use-installation-token
+        template: print-message
+        arguments:
+          parameters:
+          - name: installation-token
+            value: "{{steps.generate-token.outputs.result}}"
+
+  - name: print-message
+    inputs:
+      parameters:
+      - name: installation-token
+    container:
+      image: docker/whalesay:latest
+      command: [cowsay]
+      args: ["{{inputs.parameters.installation-token}}"]
+
+  - name: generate-installation-token
+    script:
+      image: luizfnunesmarques/token-fetcher:<version>
+      env:
+        - name: PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: <secret name>
+              key: <key that cointains the value>
+
+        - name: APP_ID
+          valueFrom:
+            secretKeyRef:
+              name: <secret name>
+              key: <key that cointains the value>
+
+        - name: INSTALLATION_ID
+          valueFrom:
+            secretKeyRef:
+              name: <secret name>
+              key: <key that cointains the value>
