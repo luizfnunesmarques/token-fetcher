@@ -1,4 +1,4 @@
-module token-fetcher
+module github.com/luizfnunesmarques/token-fetcher
 
 go 1.18
 
