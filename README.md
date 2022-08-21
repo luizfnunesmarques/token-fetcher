@@ -7,6 +7,7 @@
 Provide the three env variables and good to go. Painless execution.
 
 ---
+![Release](https://img.shields.io/github/v/release/luizfnunesmarques/token-fetcher.svg)
 ![Tests](https://github.com/luizfnunesmarques/token-fetcher/actions/workflows/lint-and-test.yml/badge.svg)
 ![Code report](https://goreportcard.com/badge/github.com/luizfnunesmarques-token-fetcher)
 ---
